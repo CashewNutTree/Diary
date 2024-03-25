@@ -44,3 +44,32 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# date-fns 라이브러리 설치
+
+```bash
+# 설치
+npm install date-fns
+```
+
+```js
+// 사용법
+const differenceInDays = require("date-fns/differenceInDays");
+const currentPassed = 35 - differenceInDays(frontBlank, currentLastDate);
+```
+
+# 아이콘 Font Awesome
+
+```bash
+# 설치
+npm install --save @fortawesome/fontawesome-svg-core
+  @fortawesome/free-solid-svg-icons
+  @fortawesome/react-fontawesome
+```
+
+```js
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+
+<FontAwesomeIcon icon={faCoffee} />;
+```
