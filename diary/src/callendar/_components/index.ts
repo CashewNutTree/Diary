@@ -6,10 +6,10 @@ import FrontBlankBox from "./subComponents/FrontBlankBox";
 import RearBlankBox from "./subComponents/RearBlankBox";
 
 export {
-  YearMonthComponent,
-  DateComponent,
-  FrontBlankBox,
-  DateBox,
-  RearBlankBox,
-  ManageComponent,
+    YearMonthComponent,
+    DateComponent,
+    FrontBlankBox,
+    DateBox,
+    RearBlankBox,
+    ManageComponent,
 };

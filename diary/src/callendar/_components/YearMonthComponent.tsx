@@ -1,30 +1,30 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 import styled from "styled-components";
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faCaretLeft, faCaretRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const YearMonthComponent = ({
-  year,
-  month,
-  movePrevMonth,
-  moveNextMonth,
-}: {
-  year: any;
-  month: any;
-  movePrevMonth: any;
-  moveNextMonth: any;
+                                year,
+                                month,
+                                movePrevMonth,
+                                moveNextMonth,
+                            }: {
+    year: any;
+    month: any;
+    movePrevMonth: any;
+    moveNextMonth: any;
 }) => {
-  const YearMonthBox = styled.div`
+    const YearMonthBox = styled.div`
     display: flex;
     width: 100%;
   `;
-  const YearMonthDiv = styled.div`
+    const YearMonthDiv = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
   `;
 
-  const MoveMonthBtn = styled.button`
+    const MoveMonthBtn = styled.button`
     width: 3%;
     text-align: center;
     border: 1px solid black;
@@ -40,7 +40,7 @@ const YearMonthComponent = ({
     }
   `;
 
-  const MonthBtn = styled.button`
+    const MonthBtn = styled.button`
     width: 20%;
     text-align: center;
     height: 50px;
@@ -56,37 +56,39 @@ const YearMonthComponent = ({
     }
   `;
 
-  useEffect(() => {}, [year, month]);
-  const previousMonth = () => {};
-  return (
-    <YearMonthBox>
-      <YearMonthDiv>
-        <MoveMonthBtn onClick={movePrevMonth}>
-          <FontAwesomeIcon
-            icon={faCaretLeft}
-            style={{
-              color: "#52c9f8",
-              width: "1em",
-              marginRight: "0.5em",
-            }}
-          />
-        </MoveMonthBtn>
-        <MonthBtn>
-          {year}년 {month + 1}월
-        </MonthBtn>
-        <MoveMonthBtn onClick={moveNextMonth}>
-          <FontAwesomeIcon
-            icon={faCaretRight}
-            style={{
-              color: "#52c9f8",
-              width: "1em",
-              marginRight: "0.5em",
-            }}
-          />
-        </MoveMonthBtn>
-      </YearMonthDiv>
-    </YearMonthBox>
-  );
+    useEffect(() => {
+    }, [year, month]);
+    const previousMonth = () => {
+    };
+    return (
+        <YearMonthBox>
+            <YearMonthDiv>
+                <MoveMonthBtn onClick={movePrevMonth}>
+                    <FontAwesomeIcon
+                        icon={faCaretLeft}
+                        style={{
+                            color: "#52c9f8",
+                            width: "1em",
+                            marginRight: "0.5em",
+                        }}
+                    />
+                </MoveMonthBtn>
+                <MonthBtn>
+                    {year}년 {month + 1}월
+                </MonthBtn>
+                <MoveMonthBtn onClick={moveNextMonth}>
+                    <FontAwesomeIcon
+                        icon={faCaretRight}
+                        style={{
+                            color: "#52c9f8",
+                            width: "1em",
+                            marginRight: "0.5em",
+                        }}
+                    />
+                </MoveMonthBtn>
+            </YearMonthDiv>
+        </YearMonthBox>
+    );
 };
 
 export default YearMonthComponent;

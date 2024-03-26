@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Callendar from "./callendar/Callendar";
+import Diary from "./diary/Diary";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path="/callendar" element={<Callendar />} />
+        <Route path="/diary" element={<Diary />} />
       </Routes>
       <Footer></Footer>
     </Router>

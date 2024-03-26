@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
-  faPen,
-  faRectangleXmark,
-  faXmark,
+    faPen,
+    faRectangleXmark,
+    faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+
 /**
  * 좌측 달력에서 선택한 일정을 관리하는 화면
  *
@@ -18,13 +19,13 @@ import {
  * @returns
  */
 const ManageComponent = () => {
-  const ManageBox = styled.div`
+    const ManageBox = styled.div`
     width: 80%;
     height: 80%;
     overflow: auto;
   `;
 
-  const ScheduleContentDiv = styled.div`
+    const ScheduleContentDiv = styled.div`
     width: 80%;
     height: 15%;
     background-color: #eee;
@@ -36,7 +37,7 @@ const ManageComponent = () => {
     position: "relative";
   `;
 
-  const ScheduleContentInput = styled.input`
+    const ScheduleContentInput = styled.input`
     width: 80%;
     height: 10%;
     // background-color: lightgray;
@@ -46,7 +47,7 @@ const ManageComponent = () => {
     margin: 0.5em;
   `;
 
-  const ButtonArea = styled.div`
+    const ButtonArea = styled.div`
     width: 80%;
     display: flex;
     justify-content: right;
@@ -54,12 +55,12 @@ const ManageComponent = () => {
     padding: 0.1em;
   `;
 
-  const ButtonGroupDiv = styled.div`
+    const ButtonGroupDiv = styled.div`
     display: flex;
     justify-content: right;
   `;
 
-  const ContentSaveBtn = styled.button`
+    const ContentSaveBtn = styled.button`
     background-color: #52c9f8;
     border-radius: 0.2em;
     border: none;
@@ -67,7 +68,7 @@ const ManageComponent = () => {
     padding: 0.5em;
   `;
 
-  const Time = styled.button`
+    const Time = styled.button`
     width: 4em;
     border: 0.1em solid #eee;
     margin: 0.2em;
@@ -76,25 +77,25 @@ const ManageComponent = () => {
     color: white;
   `;
 
-  const ScheduleContentsInput = styled.input`
+    const ScheduleContentsInput = styled.input`
     border: none;
     margin-left: 1em;
     width: 20em;
   `;
 
-  const DeleteBtn = styled.button`
+    const DeleteBtn = styled.button`
     margin-bottom: 1em;
     width: 2em;
     height: 2em;
     font-size: 0.5em;
   `;
 
-  const ScheduleContentHeader = styled.div`
+    const ScheduleContentHeader = styled.div`
     display: flex;
     justify-content: space-between;
   `;
 
-  const SerialBtn = styled.button`
+    const SerialBtn = styled.button`
     background-color: darkgray;
     color: white;
     font-style: weight;
@@ -102,76 +103,77 @@ const ManageComponent = () => {
     border: 1px solid eee;
   `;
 
-  return (
-    <ManageBox>
-      <ScheduleContentDiv>
-        <ScheduleContentHeader>
-          {/* 시작 시간 */}
-          <div>
-            <SerialBtn>
-              <span>1</span>
-            </SerialBtn>
-            <Time>09:00</Time> ~<Time>10:00</Time>
-          </div>
-          <FontAwesomeIcon
-            icon={faRectangleXmark}
-            style={{
-              color: "gray",
-              width: "1em",
-              marginRight: "0.5em",
-            }}
-          />
-        </ScheduleContentHeader>
-        {/* <div>1</div> */}
-        {/* 내용 */}
-        <span>이진경의 멋진 아침 브런치</span>
-        {/* <ScheduleContentsInput /> */}
-        &nbsp;&nbsp;
-      </ScheduleContentDiv>
+    return (
+        <ManageBox>
+            <ScheduleContentDiv>
+                <ScheduleContentHeader>
+                    {/* 시작 시간 */}
+                    <div>
+                        <SerialBtn>
+                            <span>1</span>
+                        </SerialBtn>
+                        <Time>09:00</Time> ~<Time>10:00</Time>
+                    </div>
+                    <FontAwesomeIcon
+                        icon={faRectangleXmark}
+                        style={{
+                            color: "gray",
+                            width: "1em",
+                            marginRight: "0.5em",
+                        }}
+                    />
+                </ScheduleContentHeader>
+                {/* <div>1</div> */}
+                {/* 내용 */}
+                <span>이진경의 멋진 아침 브런치</span>
+                {/* <ScheduleContentsInput /> */}
+                &nbsp;&nbsp;
+            </ScheduleContentDiv>
 
-      <ScheduleContentDiv>
-        <ScheduleContentHeader>
-          {/* 시작 시간 */}
-          <div>
-            <SerialBtn>
-              <span>2</span>
-            </SerialBtn>
-            <Time>09:00</Time> ~<Time>10:00</Time>
-          </div>
-          <FontAwesomeIcon
-            icon={faRectangleXmark}
-            style={{
-              color: "gray",
-              width: "1em",
-              marginRight: "0.5em",
-            }}
-          />
-        </ScheduleContentHeader>
-        {/* <div>1</div> */}
-        {/* 내용 */}
-        <span>이진경의 멋진 아침 브런치</span>
-        {/* <ScheduleContentsInput /> */}
-        &nbsp;&nbsp;
-      </ScheduleContentDiv>
+            <ScheduleContentDiv>
+                <ScheduleContentHeader>
+                    {/* 시작 시간 */}
+                    <div>
+                        <SerialBtn>
+                            <span>2</span>
+                        </SerialBtn>
+                        <Time>09:00</Time> ~<Time>10:00</Time>
+                    </div>
+                    <FontAwesomeIcon
+                        icon={faRectangleXmark}
+                        style={{
+                            color: "gray",
+                            width: "1em",
+                            marginRight: "0.5em",
+                        }}
+                    />
+                </ScheduleContentHeader>
+                {/* <div>1</div> */}
+                {/* 내용 */}
+                <span>이진경의 멋진 아침 브런치</span>
+                {/* <ScheduleContentsInput /> */}
+                &nbsp;&nbsp;
+            </ScheduleContentDiv>
 
-      <ButtonArea>
-        {/* <ButtonGroupDiv> */}
-        <ContentSaveBtn onClick={() => {}}>
+            <ButtonArea>
+                {/* <ButtonGroupDiv> */}
+                <ContentSaveBtn onClick={() => {
+                }}>
           <span>
             신규 &nbsp;
-            <FontAwesomeIcon icon={faPen} style={{ color: "white" }} />
+              <FontAwesomeIcon icon={faPen} style={{color: "white"}}/>
           </span>
-        </ContentSaveBtn>
-        {/* <ContentSaveBtn>
+                </ContentSaveBtn>
+                {/* <ContentSaveBtn>
           <span>
             저장 &nbsp;
             <FontAwesomeIcon icon={faCheckCircle} style={{ color: "white" }} />
           </span>
         </ContentSaveBtn> */}
-        {/* </ButtonGroupDiv> */}
-      </ButtonArea>
-    </ManageBox>
-  );
+                {/* </ButtonGroupDiv> */}
+            </ButtonArea>
+        </ManageBox>
+    );
 };
 
 export default ManageComponent;
