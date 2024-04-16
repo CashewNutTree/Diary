@@ -1,10 +1,23 @@
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faPen,
-    faRectangleXmark,
-    faXmark,
+  faPen,
+  faRectangleXmark,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import RegisterScheduleModal from "./RegisterScheduleModal";
+import {
+  ButtonArea,
+  ContentSaveBtn,
+  ManageBox,
+  ScheduleContentDiv,
+  ScheduleContentHeader,
+  SerialBtn,
+  Time,
+} from "../../Style";
+import { useAtom } from "jotai";
+import { selectScheduleList } from "../../_api/callendar";
 
 /**
  * 좌측 달력에서 선택한 일정을 관리하는 화면
@@ -18,162 +31,103 @@ import {
  *
  * @returns
  */
-const ManageComponent = () => {
-    const ManageBox = styled.div`
-    width: 80%;
-    height: 80%;
-    overflow: auto;
-  `;
+const ManageComponent = (props: any) => {
+  const { chooseDate } = props;
+  const [isOpenedRegisterScheduleModal, setIsOpenedRegisterScheduleModal] =
+    useState<boolean>(false); // 스케줄 등록 모달
 
-    const ScheduleContentDiv = styled.div`
-    width: 80%;
-    height: 15%;
-    background-color: #eee;
-    border: none;
-    border-radius: 0.2em;
-    padding-top: 0.7em;
-    padding-left: 0.5em;
-    margin: 0.5em;
-    position: "relative";
-  `;
+  const [scheduleList, setScheduleList] = useState<any>([]);
+  /**
+   * 스케쥴러 등록 화면 호출
+   */
+  const openRegisterScheduleModal = () => {
+    setIsOpenedRegisterScheduleModal(true);
+  };
 
-    const ScheduleContentInput = styled.input`
-    width: 80%;
-    height: 10%;
-    // background-color: lightgray;
-    border: 1px solid lightgray;
-    border-radius: 0.2em;
-    padding: 0.2em;
-    margin: 0.5em;
-  `;
+  /**
+   * 스케쥴 목록 조회
+   */
+  const fetchScheduleList = async () => {
+    console.log("스케쥴 목록 조회");
+    const param = {
+      chooseDate: chooseDate,
+    };
+    const response = await selectScheduleList(param);
+    console.log(response);
+    if (response) {
+      setScheduleList(response.data);
+    }
+  };
 
-    const ButtonArea = styled.div`
-    width: 80%;
-    display: flex;
-    justify-content: right;
-    margin: 0.5em;
-    padding: 0.1em;
-  `;
+  useEffect(() => {
+    fetchScheduleList();
+  }, [chooseDate]);
 
-    const ButtonGroupDiv = styled.div`
-    display: flex;
-    justify-content: right;
-  `;
-
-    const ContentSaveBtn = styled.button`
-    background-color: #52c9f8;
-    border-radius: 0.2em;
-    border: none;
-    color: white;
-    padding: 0.5em;
-  `;
-
-    const Time = styled.button`
-    width: 4em;
-    border: 0.1em solid #eee;
-    margin: 0.2em;
-    background-color: #52c9f8;
-    border-radius: 0.3em;
-    color: white;
-  `;
-
-    const ScheduleContentsInput = styled.input`
-    border: none;
-    margin-left: 1em;
-    width: 20em;
-  `;
-
-    const DeleteBtn = styled.button`
-    margin-bottom: 1em;
-    width: 2em;
-    height: 2em;
-    font-size: 0.5em;
-  `;
-
-    const ScheduleContentHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-  `;
-
-    const SerialBtn = styled.button`
-    background-color: darkgray;
-    color: white;
-    font-style: weight;
-    border-radius: 0.1em;
-    border: 1px solid eee;
-  `;
-
-    return (
-        <ManageBox>
-            <ScheduleContentDiv>
-                <ScheduleContentHeader>
-                    {/* 시작 시간 */}
-                    <div>
-                        <SerialBtn>
-                            <span>1</span>
-                        </SerialBtn>
-                        <Time>09:00</Time> ~<Time>10:00</Time>
-                    </div>
-                    <FontAwesomeIcon
-                        icon={faRectangleXmark}
-                        style={{
-                            color: "gray",
-                            width: "1em",
-                            marginRight: "0.5em",
-                        }}
-                    />
-                </ScheduleContentHeader>
-                {/* <div>1</div> */}
-                {/* 내용 */}
-                <span>이진경의 멋진 아침 브런치</span>
-                {/* <ScheduleContentsInput /> */}
-                &nbsp;&nbsp;
+  return (
+    <ManageBox>
+      {scheduleList.length > 0 && (
+        <>
+          {scheduleList.map((data: any, idx: number) => (
+            <ScheduleContentDiv key={idx}>
+              <ScheduleContentHeader>
+                {/* 시작 시간 */}
+                <div>
+                  <SerialBtn>
+                    <span>{idx + 1}</span>
+                  </SerialBtn>
+                  <Time>{data.strtTime}</Time> ~<Time>{data.endTime}</Time>
+                </div>
+                <FontAwesomeIcon
+                  icon={faRectangleXmark}
+                  style={{
+                    color: "gray",
+                    width: "1em",
+                    marginRight: "0.5em",
+                  }}
+                />
+              </ScheduleContentHeader>
+              {/* <div>1</div> */}
+              {/* 내용 */}
+              <span>{data.calendarCnts}</span>
+              {/* <ScheduleContentsInput /> */}
+              &nbsp;&nbsp;
             </ScheduleContentDiv>
+          ))}
+        </>
+      )}
 
-            <ScheduleContentDiv>
-                <ScheduleContentHeader>
-                    {/* 시작 시간 */}
-                    <div>
-                        <SerialBtn>
-                            <span>2</span>
-                        </SerialBtn>
-                        <Time>09:00</Time> ~<Time>10:00</Time>
-                    </div>
-                    <FontAwesomeIcon
-                        icon={faRectangleXmark}
-                        style={{
-                            color: "gray",
-                            width: "1em",
-                            marginRight: "0.5em",
-                        }}
-                    />
-                </ScheduleContentHeader>
-                {/* <div>1</div> */}
-                {/* 내용 */}
-                <span>이진경의 멋진 아침 브런치</span>
-                {/* <ScheduleContentsInput /> */}
-                &nbsp;&nbsp;
-            </ScheduleContentDiv>
-
-            <ButtonArea>
-                {/* <ButtonGroupDiv> */}
-                <ContentSaveBtn onClick={() => {
-                }}>
+      <ButtonArea>
+        {/* <ButtonGroupDiv> */}
+        <ContentSaveBtn
+          onClick={() => {
+            openRegisterScheduleModal();
+          }}
+        >
           <span>
             신규 &nbsp;
-              <FontAwesomeIcon icon={faPen} style={{color: "white"}}/>
+            <FontAwesomeIcon icon={faPen} style={{ color: "white" }} />
           </span>
-                </ContentSaveBtn>
-                {/* <ContentSaveBtn>
+        </ContentSaveBtn>
+        {/* <ContentSaveBtn>
           <span>
             저장 &nbsp;
             <FontAwesomeIcon icon={faCheckCircle} style={{ color: "white" }} />
           </span>
         </ContentSaveBtn> */}
-                {/* </ButtonGroupDiv> */}
-            </ButtonArea>
-        </ManageBox>
-    );
+        {/* </ButtonGroupDiv> */}
+      </ButtonArea>
+
+      {isOpenedRegisterScheduleModal && (
+        <RegisterScheduleModal
+          closeModal={() =>
+            //조타이 사용 예시
+
+            setIsOpenedRegisterScheduleModal(false)
+          }
+        ></RegisterScheduleModal>
+      )}
+    </ManageBox>
+  );
 };
 
 export default ManageComponent;

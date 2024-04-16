@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 /**
@@ -8,34 +8,33 @@ import styled from "styled-components";
  * @returns
  */
 const FrontBlankBox = (props: any) => {
-    const DateCell = styled.div`
+  const DateCell = styled.div`
     border: 0.5px solid #aaa;
     text-align: center;
     margin: 1px;
   `;
-    const {frontBlankSize, prevDatePassed} = props;
-    useEffect(() => {
-    }, []);
-    return (
-        <>
-            {prevDatePassed.map((data: any, idx: any) => (
-                <DateCell
-                    key={data.date}
-                    onClick={() => {
-                        alert("넘어감" + data.date);
-                    }}
-                >
-                    {data.date}
-                </DateCell>
-            ))}
+  const { frontBlankSize, prevDatePassed, choiceCurrentDate } = props;
+  useEffect(() => {}, []);
+  return (
+    <>
+      {prevDatePassed.map((data: any, idx: any) => (
+        <DateCell
+          key={data.date}
+          onClick={() => {
+            choiceCurrentDate(data.date);
+          }}
+        >
+          {data.date}
+        </DateCell>
+      ))}
 
-            {Array.from({length: frontBlankSize}).map((_, idx) => (
-                <DateCell key={idx}>
-                    <span></span>
-                </DateCell>
-            ))}
-        </>
-    );
+      {Array.from({ length: frontBlankSize }).map((_, idx) => (
+        <DateCell key={idx}>
+          <span></span>
+        </DateCell>
+      ))}
+    </>
+  );
 };
 
 export default FrontBlankBox;
